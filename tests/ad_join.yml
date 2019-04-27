@@ -1,6 +1,8 @@
 ---
-- name: adding windows to domain
-  win_domain_membership:
+- hosts: all
+  gather_facts: no
+  tasks:
+  - win_domain_membership:
       dns_domain_name: ansible.vagrant
       hostname: mydomainclient
       domain_admin_user: testguy@ansible.vagrant
@@ -8,4 +10,6 @@
       domain_ou_path: "OU=Windows,OU=Servers,DC=ansible,DC=vagrant"
       state: domain
     register: domain_state
-  tags: windows_domain_add
+
+  - win_reboot:
+    when: domain_state.reboot_required
