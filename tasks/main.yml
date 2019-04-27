@@ -7,5 +7,5 @@
       domain_admin_password: password123!
       domain_ou_path: "OU=Windows,OU=Servers,DC=ansible,DC=vagrant"
       state: domain
-    register: domain_state
+  register: domain_state
   tags: windows_domain_add
